@@ -1,0 +1,6 @@
+{
+  "name": "PawCare Pet Services - Lahore",
+  "description": "Top-quality pet care, grooming, boarding, daycare, and sitting services tailored for dogs and cats across Lahore, Pakistan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
