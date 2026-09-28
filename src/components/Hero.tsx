@@ -101,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-xl shadow-[#1F2421]/5">
                 <div className="aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-[#EAE4DC]">
                   <img
-                    src="/src/assets/images/hero_pet_care_lahore_1790446255096.jpg"
+                    src="/assets/images/hero_pet_care_lahore_1790446255096.jpg"
                     alt="Happy golden retriever and cute cat enjoying professional pet services in Lahore at PawCare"
                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                     loading="eager"

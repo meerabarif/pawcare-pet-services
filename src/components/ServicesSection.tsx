@@ -38,8 +38,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   };
 
   const getServicePhoto = (id: string) => {
-    if (id === 'pet-grooming') return '/src/assets/images/service_pet_grooming_lahore_1790446270038.jpg';
-    if (id === 'pet-daycare' || id === 'pet-boarding') return '/src/assets/images/service_pet_daycare_lahore_1790446283796.jpg';
+    if (id === 'pet-grooming') return '/assets/images/service_pet_grooming_lahore_1790446270038.jpg';
+    if (id === 'pet-daycare' || id === 'pet-boarding') return '/assets/images/service_pet_daycare_lahore_1790446283796.jpg';
     return null;
   };
 
