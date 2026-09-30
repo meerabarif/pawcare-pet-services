@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { WHY_CHOOSE_US_POINTS, LAHORE_AREAS } from '../data/petServicesData';
-import { ShieldCheck, HeartHandshake, ThermometerSnowflake, Smartphone, Check, MapPin } from 'lucide-react';
+import { ShieldCheck, HeartHandshake, ThermometerSnowflake, Smartphone, Check, MapPin, ArrowRight } from 'lucide-react';
 
 export const WhyChooseUs: React.FC = () => {
   const getIcon = (iconName: string) => {
@@ -63,8 +64,19 @@ export const WhyChooseUs: React.FC = () => {
           ))}
         </div>
 
+        {/* Link to Full Why Choose Us Page */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/why-choose-us"
+            className="inline-flex items-center gap-2 rounded-xl bg-white border border-[#2D6A4F] px-5 py-2.5 text-xs font-bold text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white transition-colors"
+          >
+            <span>Read full comparison vs traditional local kennels</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
         {/* Lahore Coverage Zone Card */}
-        <div className="mt-14 overflow-hidden rounded-3xl border border-[#EAE4DC] bg-white p-8 shadow-xs">
+        <div className="mt-12 overflow-hidden rounded-3xl border border-[#EAE4DC] bg-white p-8 shadow-xs">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#F0EAE1]">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#2D6A4F]">

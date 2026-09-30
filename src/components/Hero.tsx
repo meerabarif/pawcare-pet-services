@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Star, ShieldCheck, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
@@ -64,12 +65,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                 <ArrowRight className="h-4 w-4" />
               </button>
 
-              <a
-                href="#services"
+              <Link
+                to="/services"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[#D5DDD7] bg-white px-6 py-3.5 text-sm font-semibold text-[#1F2421] shadow-xs transition-all hover:border-[#2D6A4F] hover:bg-[#F2F7F4] hover:text-[#2D6A4F] active:scale-[0.98] whitespace-nowrap"
               >
-                <span>Explore Our Services</span>
-              </a>
+                <span>Explore All Services</span>
+              </Link>
             </div>
 
             {/* Social Proof Row */}
@@ -83,21 +84,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                 <span className="text-sm font-bold text-[#1F2421]">4.9 / 5.0</span>
               </div>
               <span className="text-[#A0AEC0] hidden sm:inline">|</span>
-              <div className="text-xs text-[#555E57] sm:text-sm">
-                Trusted by <strong className="font-semibold text-[#1F2421]">650+ pet parents</strong> across Lahore
-              </div>
+              <span className="text-xs sm:text-sm text-[#4A5568]">
+                <strong>2,500+</strong> Pet Parents Served in Lahore
+              </span>
               <span className="text-[#A0AEC0] hidden sm:inline">|</span>
-              <div className="flex items-center gap-1.5 text-xs text-[#2D6A4F] font-medium sm:text-sm">
-                <ShieldCheck className="h-4 w-4" />
-                <span>100% Medical Grade Disinfected</span>
-              </div>
+              <span className="text-xs sm:text-sm text-[#2D6A4F] font-semibold">
+                DHA, Gulberg & Cantt
+              </span>
             </div>
+
           </div>
 
-          {/* Right Column: Visual App Card Composition */}
+          {/* Right Column: High Quality Visual Showcase */}
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Main Pet Image Frame */}
+              
+              {/* Main Rounded Image */}
               <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-xl shadow-[#1F2421]/5">
                 <div className="aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden bg-[#EAE4DC]">
                   <img
@@ -105,46 +107,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                     alt="Happy golden retriever and cute cat enjoying professional pet services in Lahore at PawCare"
                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                     loading="eager"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
-
-                {/* Bottom Card Summary Bar */}
-                <div className="p-4 bg-white flex items-center justify-between">
-                  <div>
-                    <h3 className="text-sm font-bold text-[#1F2421]">PawCare Flagship Sanctuary</h3>
-                    <p className="text-xs text-[#6B7280]">Sector Y, Phase 3 DHA, Lahore</p>
-                  </div>
-                  <div className="flex items-center gap-1 rounded-xl bg-[#F0F7F3] px-2.5 py-1 text-xs font-semibold text-[#2D6A4F]">
-                    <Sparkles className="h-3.5 w-3.5 text-[#F4A261]" />
-                    <span>Open Today 8am - 9pm</span>
-                  </div>
-                </div>
               </div>
 
-              {/* Floating App Style Widget: Temperature & Power Safety (Addressing Lahore summer issue) */}
-              <div className="absolute -bottom-5 -left-4 sm:-left-6 rounded-2xl border border-white bg-white/95 p-3.5 shadow-lg backdrop-blur-md transition-transform hover:scale-105 sm:p-4">
+              {/* Floating Badge 1: 24/7 Power Guarantee */}
+              <div className="absolute -bottom-5 -left-4 sm:bottom-6 sm:-left-6 rounded-2xl border border-[#EAE4DC] bg-white/95 p-3.5 shadow-lg backdrop-blur-md">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF2ED] text-[#2D6A4F]">
-                    <span className="text-lg">❄️</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF2ED] text-[#2D6A4F]">
+                    <ShieldCheck className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-[#1F2421]">Climate Shield Room</div>
-                    <div className="text-[11px] text-[#555E57]">Constant 23°C · Zero Power Cuts</div>
+                    <div className="text-xs font-bold text-[#1F2421]">Zero Load Shedding</div>
+                    <div className="text-[11px] text-[#718096]">Continuous 22°C AC Inverters</div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating App Style Widget: Verified Care Badge */}
-              <div className="absolute -top-4 -right-2 sm:-right-4 rounded-2xl border border-white bg-white/95 p-3 shadow-lg backdrop-blur-md transition-transform hover:scale-105">
+              {/* Floating Badge 2: Certified Handlers */}
+              <div className="absolute -top-4 -right-2 sm:-top-5 sm:-right-4 rounded-2xl border border-[#EAE4DC] bg-white/95 p-3 shadow-lg backdrop-blur-md">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F4A261]/20 text-[#E76F51]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FBF0E4] text-[#F4A261]">
                     <Sparkles className="h-4 w-4" />
                   </div>
-                  <div>
-                    <div className="text-xs font-bold text-[#1F2421]">Certified Vet Care</div>
-                    <div className="text-[10px] text-[#6B7280]">UVAS Trained Nurses</div>
-                  </div>
+                  <div className="text-xs font-bold text-[#1F2421]">Fear-Free Care</div>
                 </div>
               </div>
 

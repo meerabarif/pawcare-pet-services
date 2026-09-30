@@ -1,5 +1,6 @@
 import React from 'react';
-import { Heart, ShieldAlert, Award, Clock, Users, Sparkles, Building2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Heart, ShieldAlert, Award, Clock, Users, Sparkles, Building2, ArrowRight } from 'lucide-react';
 
 export const AboutUs: React.FC = () => {
   return (
@@ -54,6 +55,16 @@ export const AboutUs: React.FC = () => {
                     <p className="text-[12px] text-[#6B7280]">Freshly prepped to owner specs</p>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-[#E2DBD1]">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2D6A4F] hover:underline"
+                >
+                  <span>Read our full story, team credentials & facility tour</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
 

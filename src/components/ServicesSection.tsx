@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PET_SERVICES, ServiceItem } from '../data/petServicesData';
-import { Scissors, Home, Sun, Footprints, ShieldCheck, Check, Clock, Sparkles } from 'lucide-react';
+import { 
+  Scissors, 
+  Home, 
+  Sun, 
+  Footprints, 
+  ShieldCheck, 
+  Check, 
+  Clock, 
+  Sparkles, 
+  ArrowRight,
+  Calendar
+} from 'lucide-react';
 
 interface ServicesSectionProps {
   onSelectService: (serviceTitle: string) => void;
@@ -37,12 +49,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
     }
   };
 
-  const getServicePhoto = (id: string) => {
-    if (id === 'pet-grooming') return '/assets/images/service_pet_grooming_lahore_1790446270038.jpg';
-    if (id === 'pet-daycare' || id === 'pet-boarding') return '/assets/images/service_pet_daycare_lahore_1790446283796.jpg';
-    return null;
-  };
-
   return (
     <section id="services" className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -58,44 +64,44 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           <p className="mt-4 text-base leading-relaxed text-[#4A5568]">
             From cooling summer de-shedding spa baths to 24/7 power-backed luxury boarding, we take pride in safeguarding the wellbeing of your canine and feline family members.
           </p>
-
-          {/* Interactive Category Filter Bar */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-1.5 p-1.5 bg-[#EAE4DC]/60 rounded-2xl max-w-2xl mx-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all whitespace-nowrap cursor-pointer ${
-                  activeCategory === cat.id
-                    ? 'bg-white text-[#1F2421] shadow-xs'
-                    : 'text-[#4A5568] hover:text-[#1F2421] hover:bg-white/50'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
         </div>
 
-        {/* Services Grid */}
+        {/* Category Filter Buttons */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`rounded-xl px-4 py-2 text-xs font-semibold transition-all cursor-pointer ${
+                activeCategory === cat.id
+                  ? 'bg-[#2D6A4F] text-white shadow-xs'
+                  : 'bg-white border border-[#EAE4DC] text-[#4A5568] hover:border-[#2D6A4F] hover:text-[#2D6A4F]'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Services Cards Grid */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map((service) => {
-            const photo = getServicePhoto(service.id);
+            const photo = service.image;
+
             return (
               <div
                 key={service.id}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#EAE4DC] bg-white p-6 shadow-2xs transition-all duration-300 hover:border-[#2D6A4F]/40 hover:shadow-xl hover:shadow-[#1F2421]/5"
+                className="group relative flex flex-col justify-between rounded-3xl border border-[#EAE4DC] bg-white overflow-hidden shadow-2xs transition-all hover:border-[#2D6A4F]/50 hover:shadow-md"
               >
                 <div>
-                  {/* Photo if available */}
+                  {/* Photo Banner with tag */}
                   {photo && (
-                    <div className="relative mb-5 -mx-6 -mt-6 h-48 overflow-hidden bg-[#FAF7F2]">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#FAF7F2]">
                       <img
                         src={photo}
-                        alt={`${service.title} in Lahore`}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        alt={`${service.title} Lahore`}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
-                        referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       {service.popular && (
@@ -110,103 +116,89 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     </div>
                   )}
 
-                  {/* Header Row without photo */}
-                  {!photo && (
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF2ED]">
-                        {getServiceIcon(service.category)}
-                      </div>
-                      {service.popular && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-[#FBF0E4] px-2.5 py-0.5 text-xs font-semibold text-[#D97706]">
-                          <Sparkles className="h-3 w-3" />
-                          Popular
-                        </span>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Title & Tagline */}
-                  <div className="flex items-center gap-2">
-                    {photo && (
+                  <div className="p-6">
+                    {/* Title & Tagline */}
+                    <div className="flex items-center gap-2">
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#EAF2ED]">
                         {getServiceIcon(service.category)}
                       </div>
-                    )}
-                    <div>
-                      <h3 className="font-heading text-lg font-bold text-[#1F2421] group-hover:text-[#2D6A4F] transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-xs font-medium text-[#2D6A4F]">{service.tagline}</p>
-                    </div>
-                  </div>
-
-                  <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#4A5568]">
-                    {service.description}
-                  </p>
-
-                  {/* Key checklist features */}
-                  <div className="mt-5 space-y-2 border-t border-[#F0EAE1] pt-4">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#718096]">
-                      What's Included:
-                    </div>
-                    {service.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-[#2D312E]">
-                        <Check className="h-3.5 w-3.5 text-[#2D6A4F] shrink-0 mt-0.5" />
-                        <span className="leading-snug">{feat}</span>
+                      <div>
+                        <h3 className="font-heading text-lg font-bold text-[#1F2421] group-hover:text-[#2D6A4F] transition-colors">
+                          <Link to={`/services/${service.id}`}>
+                            {service.title}
+                          </Link>
+                        </h3>
+                        <p className="text-xs font-medium text-[#2D6A4F]">{service.tagline}</p>
                       </div>
-                    ))}
+                    </div>
+
+                    <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#4A5568]">
+                      {service.description}
+                    </p>
+
+                    {/* Key checklist features */}
+                    <div className="mt-5 space-y-2 border-t border-[#F0EAE1] pt-4">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-[#718096]">
+                        What's Included:
+                      </div>
+                      {service.features.map((feat, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-xs text-[#2D312E]">
+                          <Check className="h-3.5 w-3.5 text-[#2D6A4F] shrink-0 mt-0.5" />
+                          <span className="leading-snug">{feat}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
                 {/* Bottom Pricing & Action */}
-                <div className="mt-6 border-t border-[#F0EAE1] pt-4">
-                  <div className="flex items-baseline justify-between">
+                <div className="p-6 pt-0">
+                  <div className="border-t border-[#F0EAE1] pt-4 flex items-baseline justify-between">
                     <div>
                       <span className="text-[11px] uppercase tracking-wider text-[#718096]">Starting From</span>
                       <div className="font-heading text-lg font-extrabold text-[#1F2421] tabular-nums">
                         {service.startingPrice}
                       </div>
                     </div>
-                    {!photo && (
-                      <div className="flex items-center gap-1 text-xs text-[#718096]">
-                        <Clock className="h-3.5 w-3.5" />
-                        <span>{service.duration}</span>
-                      </div>
-                    )}
+                    <Link
+                      to={`/services/${service.id}`}
+                      className="text-xs font-bold text-[#2D6A4F] hover:underline flex items-center gap-1"
+                    >
+                      <span>Explore Page</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
                   </div>
 
-                  <button
-                    onClick={() => onSelectService(service.title)}
-                    className="mt-4 w-full rounded-2xl bg-[#FAF7F2] border border-[#D5DDD7] py-2.5 text-xs font-bold text-[#1F2421] shadow-2xs transition-all hover:bg-[#2D6A4F] hover:text-white hover:border-[#2D6A4F] active:scale-[0.98] cursor-pointer"
-                  >
-                    Book {service.title}
-                  </button>
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <Link
+                      to={`/services/${service.id}`}
+                      className="flex items-center justify-center rounded-xl border border-[#D5DDD7] bg-[#FAF7F2] py-2.5 text-xs font-bold text-[#1F2421] hover:bg-[#EAE4DC] transition-colors"
+                    >
+                      View Packages
+                    </Link>
+                    <button
+                      onClick={() => onSelectService(service.title)}
+                      className="flex items-center justify-center gap-1.5 rounded-xl bg-[#2D6A4F] py-2.5 text-xs font-bold text-white shadow-2xs hover:bg-[#1B4332] active:scale-[0.98] transition-all cursor-pointer"
+                    >
+                      <Calendar className="h-3.5 w-3.5" />
+                      <span>Book Service</span>
+                    </button>
+                  </div>
                 </div>
-
               </div>
             );
           })}
         </div>
 
-        {/* Lahore Climate Advisory banner */}
-        <div className="mt-14 rounded-3xl border border-[#2D6A4F]/20 bg-[#EAF2ED]/60 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2D6A4F]">
-              Lahore Seasonal Weather Advisory
-            </span>
-            <h4 className="font-heading text-lg font-bold text-[#1F2421]">
-              Is your dog or cat shedding excessively or struggling with Lahore's heat?
-            </h4>
-            <p className="text-xs sm:text-sm text-[#4A5568] max-w-2xl">
-              We offer specialized summer coat thinning, de-shedding fur baths, paw pad cooling salves, and medicated anti-tick dips specially formulated for Punjab's humidity.
-            </p>
-          </div>
-          <button
-            onClick={() => onSelectService('Pet Grooming & Spa - Summer De-Shedding')}
-            className="shrink-0 rounded-2xl bg-[#2D6A4F] px-5 py-3 text-xs font-bold text-white shadow-xs hover:bg-[#1B4332] transition-colors cursor-pointer"
+        {/* View All Services Overview Link Bar */}
+        <div className="mt-12 text-center">
+          <Link
+            to="/services"
+            className="inline-flex items-center gap-2 rounded-2xl bg-white border border-[#2D6A4F] px-6 py-3 text-xs sm:text-sm font-bold text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white transition-all shadow-xs"
           >
-            Book Summer De-Shedding
-          </button>
+            <span>View Full Service Catalog & Pricing Matrix</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
       </div>

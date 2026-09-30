@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { PawPrint, MapPin, Phone, Mail, MessageCircle, Heart } from 'lucide-react';
+import { PET_SERVICES } from '../data/petServicesData';
 
 export const Footer: React.FC = () => {
   return (
@@ -9,14 +11,14 @@ export const Footer: React.FC = () => {
           
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#2D6A4F] text-white">
                 <PawPrint className="h-5 w-5 fill-current" />
               </div>
               <span className="font-heading text-lg font-bold text-[#1F2421]">
                 PawCare <span className="text-[#2D6A4F]">Pet Services</span>
               </span>
-            </div>
+            </Link>
             <p className="text-xs sm:text-sm leading-relaxed text-[#4A5568] max-w-sm">
               Lahore’s trusted sanctuary for hygienic pet grooming, climate-controlled boarding, daytime play, and personalized in-home pet sitting.
             </p>
@@ -38,7 +40,7 @@ export const Footer: React.FC = () => {
                 <Phone className="h-4 w-4" />
               </a>
               <a
-                href="mailto:care@pawcarelahore.com"
+                href="mailto:hello@pawcarelahore.com"
                 className="flex h-9 w-9 items-center justify-center rounded-xl bg-white border border-[#D5DDD7] text-[#4A5568] hover:bg-[#1F2421] hover:text-white transition-colors"
                 aria-label="Email"
               >
@@ -47,33 +49,38 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Nav Col */}
+          {/* Dedicated Services Col */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2421] mb-3">
-              Services
+              Services Pages
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#services" className="hover:text-[#2D6A4F]">Pet Grooming & Spa</a></li>
-              <li><a href="#services" className="hover:text-[#2D6A4F]">Overnight Boarding</a></li>
-              <li><a href="#services" className="hover:text-[#2D6A4F]">Daycare & Social Play</a></li>
-              <li><a href="#services" className="hover:text-[#2D6A4F]">Dog Walking</a></li>
-              <li><a href="#services" className="hover:text-[#2D6A4F]">In-Home Pet Sitting</a></li>
-              <li><a href="#estimator" className="hover:text-[#2D6A4F]">Pricing Calculator</a></li>
+              {PET_SERVICES.map((s) => (
+                <li key={s.id}>
+                  <Link to={`/services/${s.id}`} className="hover:text-[#2D6A4F] transition-colors">
+                    {s.title}
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link to="/services" className="font-bold text-[#2D6A4F] hover:underline">
+                  All Services Catalog →
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Lahore Neighborhoods Col */}
+          {/* Quick Pages Col */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2421] mb-3">
-              Lahore Coverage
+              Quick Pages
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><span className="text-[#4A5568]">DHA Phases 1 – 8</span></li>
-              <li><span className="text-[#4A5568]">Gulberg I, II, III</span></li>
-              <li><span className="text-[#4A5568]">Model Town</span></li>
-              <li><span className="text-[#4A5568]">Bahria Town</span></li>
-              <li><span className="text-[#4A5568]">Johar Town & PCSIR</span></li>
-              <li><span className="text-[#4A5568]">Lahore Cantt & Askari</span></li>
+              <li><Link to="/" className="hover:text-[#2D6A4F]">Home</Link></li>
+              <li><Link to="/about" className="hover:text-[#2D6A4F]">About Us</Link></li>
+              <li><Link to="/why-choose-us" className="hover:text-[#2D6A4F]">Why Choose Us</Link></li>
+              <li><Link to="/estimator" className="hover:text-[#2D6A4F]">Cost Estimator</Link></li>
+              <li><Link to="/contact" className="hover:text-[#2D6A4F]">Contact & Location</Link></li>
             </ul>
           </div>
 
@@ -96,7 +103,8 @@ export const Footer: React.FC = () => {
                 <span>hello@pawcarelahore.com</span>
               </div>
               <div className="text-[11px] text-[#718096] pt-1">
-                Mon - Sun: 8:00 AM - 9:00 PM
+                Mon - Sun: 8:00 AM - 9:00 PM <br />
+                <span className="text-[#2D6A4F] font-semibold">24/7 Emergency Vet Hotline</span>
               </div>
             </div>
           </div>
